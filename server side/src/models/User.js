@@ -33,8 +33,7 @@ const userSchema = new Schema({
 
   },
   phone_number:{
-    type: String,
-    required:true,
+    type: String
   },
   cart_items: [{
     product: {
@@ -43,7 +42,6 @@ const userSchema = new Schema({
     },
     quantity: {
       type: Number,
-      required: true,
       default: 1,
     },
   }],

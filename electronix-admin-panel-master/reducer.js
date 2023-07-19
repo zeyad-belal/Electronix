@@ -25,7 +25,7 @@ const reducer = (state, action) => {
         confirmDeletion: false,
         module: "",
         toBeDeletedItem: "",
-      };
+      }
     case "DELETE_CATEGORY":
       const newCategories = state.categories.filter(
         (cat) => cat._id != action.payload
