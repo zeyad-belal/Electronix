@@ -31,7 +31,9 @@ const ProductsItem = ({ item }) => {
       image: product.images[0].url,
       amount: 1,
       price: product.new_price ?? product.price
-    });
+    })
+    // toast.success("item added to cart !")
+    // console.log("ggggggggggggggggggggggggggggggg")
     } else {
       toast.info("Sign in first !", {
         position: "top-right",

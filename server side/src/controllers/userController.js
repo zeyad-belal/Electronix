@@ -107,7 +107,7 @@ const getAllUsers = async (req, res) => {
 //get user by id
 const getUserById = async (req, res) => {
   const { id } = req.params;
-  const user = await User.findById(id).populate('cart_items.product');;
+  const user = await User.findById(id).populate("cart_items.product");
   if (!user) return next(new AppError("user not found", 404));
   res.send({ user });
 };
@@ -163,8 +163,7 @@ const updateUser = async (req, res) => {
     role,
     address,
   } = req.body;
-  console.log("sssssss",cart_items)
-  // const parsedCartItems =JSON.parse(cart_items)
+
   const user = await User.findByIdAndUpdate(
     id,
     {

@@ -1,19 +1,18 @@
+/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { useContext, useReducer } from "react";
 
 import CartContext from "./CartContext";
 import axios from "axios";
-import { toast } from "react-toastify";
-import UserContext from "../context/UserContext";
+import { useCookies } from "react-cookie";
 //--------------------------------Reducer-------------------------------------------
 
 
 const defaultCartState = {
   items:  [],
   totalAmount:  0,
-  totalItemsNum:  0,
-  changed: false
+  totalItemsNum:  0
 };
 
 
@@ -51,8 +50,7 @@ function CartReducer(state, action) {
       return {
         items: updatedItems,
         totalAmount: updatedTotalAmount,
-        totalItemsNum: updatedTotalItemsNum,
-        changed: true
+        totalItemsNum: updatedTotalItemsNum
       };
     }
   
@@ -84,8 +82,7 @@ function CartReducer(state, action) {
     return {
       items: updatedItems,
       totalAmount: updatedTotalAmount,
-      totalItemsNum: updatedTotalItemsNum,
-      changed: true
+      totalItemsNum: updatedTotalItemsNum
     };
   }
 
@@ -93,8 +90,7 @@ function CartReducer(state, action) {
     return {
       items: [],
       totalAmount: 0,
-      totalItemsNum: 0,
-      changed: true
+      totalItemsNum: 0
     };
   }
 
@@ -102,8 +98,7 @@ function CartReducer(state, action) {
     return {
       items: action.items,
       totalAmount: action.totalAmount,
-      totalItemsNum: action.totalItemsNum,
-      changed: false
+      totalItemsNum: action.totalItemsNum
     };
   }
 
@@ -113,19 +108,17 @@ function CartReducer(state, action) {
 //--------------------------------Provider-------------------------------------------
 
 function CartProvider(props) {
-
+  const [cookies, setCookie] = useCookies(['UserToken','User']);
   const [cartState, cartDispatch] = useReducer(CartReducer, defaultCartState);
 
   const cartContextValue = {
     items: cartState.items,
     totalAmount: cartState.totalAmount,
     totalItemsNum: cartState.totalItemsNum,
-    changed: cartState.changed,
     addItem: addItemHandler,
     removeItem: removeItemHandler,
     clearCart: clearCartHandler,
-    sendCartItems: sendCartItems,
-    replaceCart :replaceCart
+    sendCartItems: sendCartItems
   };
 
   function addItemHandler(item) {
@@ -142,14 +135,10 @@ function CartProvider(props) {
 
   // ---------------------sync cart with backend methods------------------------------------
 
-  async function sendCartItems(cart, currentCartItems, userID,userToken) {
+  async function sendCartItems(cart, userID,userToken) {
     const sendRequest = async () => {
-      // Merge the current and new cart items
-      const mergedCartItems = mergeCartItems(currentCartItems, cart.items);
-
-      // Update the cart items in the backend
       const reqData = {
-        cart_items: mergedCartItems.map((item) => ({
+        cart_items:  cart.items.map((item) => ({
           product: item.id,
           quantity: item.amount
         }))
@@ -169,52 +158,53 @@ function CartProvider(props) {
     }
   }
 
-  function mergeCartItems(currentCartItems, newCartItems) {
-    // If currentCartItems is undefined, set it to an empty array
-    currentCartItems = currentCartItems || [];
-
-    // Create a map of the current cart items for easy lookup
-    const currentCartItemsMap = new Map();
-    currentCartItems.forEach((item) => {
-      currentCartItemsMap.set(item.id, item);
-    });
-
-    // Merge the current and new cart items
-    const mergedCartItems = [...currentCartItems];
-    newCartItems.forEach((newItem) => {
-      const currentItem = currentCartItemsMap.get(newItem.id);
-      if (currentItem) {
-        // If the item already exists in the cart, update its amount
-        currentItem.amount += newItem.amount;
-      } else {
-        // If the item is new, add it to the cart
-        mergedCartItems.push(newItem);
-      }
-    });
-
-    return mergedCartItems;
-  }
-
 //---------------------
 
 
-function replaceCart(myItems,totalAmount,totalItemsNum) {
-  cartDispatch({
-    type: "REPLACE",
-    items: myItems || [],
-    totalAmount: totalAmount || 0 ,
-    totalItemsNum: totalItemsNum || 0,
-    changed: false
-  });
+async function fetchCartItems() {
+  async function sendReq(){
+  const response = await axios.get(`${import.meta.env.VITE_API_URL}/users/${cookies.User.id}`,
+      { headers: { Authorization: cookies.UserToken } }
+      );
+      
+      const cartData = await response.data.user.cart_items;
+      const quantities = cartData.map((item) => item.quantity);
+      const cartItems = cartData.map((item) => item.product);
+      const myItems = cartItems.map((item, index) => ({
+        id: item.id,
+        name: item.name,
+        image: item.images[0].url,
+        amount: quantities[index],
+        price: item.new_price
+      }));
+
+      const totalAmount = myItems.reduce((sum, item) => sum + item.amount * item.price,0);
+      const totalItemsNum = myItems.reduce((sum, item) => sum + item.amount, 0);
+      const result ={ myItems,totalAmount,totalItemsNum}
+      return result
+    }
+    const res = await sendReq()
+    console.log(res)
+
+    cartDispatch({
+      type: "REPLACE",
+      items: res.myItems || [],
+      totalAmount: res.totalAmount || 0 ,
+      totalItemsNum: res.totalItemsNum || 0
+    });
   
 }
 
 
   return (
-    <CartContext.Provider value={cartContextValue}>
+    <CartContext.Provider value={{...cartContextValue , fetchCartItems,sendCartItems}}>
       {props.children}
     </CartContext.Provider>
   );
 }
 
 export default CartProvider;
+
+export const useCartContext = () => {
+  return useContext(CartContext);
+};

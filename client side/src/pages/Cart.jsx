@@ -149,7 +149,6 @@ const Cart = () => {
                               {item.name}
                             </h3>
                             <div className="flex gap-2 flex-col">
-                              {console.log(items)}
                               <div className="text-f37020 text-[13px]">
                                 {quantities[ind][index]} pieces Purchased
                               </div>
