@@ -28,7 +28,17 @@ const ProductPage = () => {
         image: product.images[0].url,
         amount: count,
         price: product.new_price ?? product.price,
-      });
+      })
+      toast.success("Item added to cart !",{
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light"
+      })
     } else {
     toast.info("Sign in first !", {
       position: "top-right",

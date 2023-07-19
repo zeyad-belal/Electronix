@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-import React from "react";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import CartContext from "../context/CartContext";
@@ -32,8 +31,16 @@ const ProductsItem = ({ item }) => {
       amount: 1,
       price: product.new_price ?? product.price
     })
-    // toast.success("item added to cart !")
-    // console.log("ggggggggggggggggggggggggggggggg")
+    toast.success("Item added to cart !",{
+      position: "top-right",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light"
+    })
     } else {
       toast.info("Sign in first !", {
         position: "top-right",
