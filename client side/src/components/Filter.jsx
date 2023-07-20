@@ -37,7 +37,7 @@ const Filter = () => {
         const { data } = await axios.get(
           `${import.meta.env.VITE_API_URL}/brands`
         );
-        console.log("brands", data);
+        // console.log("brands", data);
         setBrands(data);
       } else {
         const { data } = await axios.get(
@@ -45,7 +45,7 @@ const Filter = () => {
             import.meta.env.VITE_API_URL
           }/brands?category_name=${selectedCategory}`
         );
-        console.log("here brand 2");
+        // console.log("here brand 2");
 
         setBrands(data);
       }
@@ -250,7 +250,7 @@ const Filter = () => {
                 />
                 <label htmlFor="all-brands">All</label>
               </div>
-              {console.log(brands)}
+              {/* {console.log(brands)} */}
               {[...brands].length &&
                 [...brands]?.map((brand) => (
                   <div key={brand._id} className="space-x-2">

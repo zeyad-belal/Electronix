@@ -38,7 +38,7 @@ const Products = () => {
           filtered = allProducts.sort((a, b) => b.new_price - a.new_price);
         }
       }
-      console.log("before", filtered);
+      // console.log("before", filtered);
 
       if (
         searchParams.get("brand") === "All" &&
@@ -78,7 +78,7 @@ const Products = () => {
           }
         });
       }
-      console.log(filtered);
+      // console.log(filtered);
       setfilteredProducts(filtered);
     }
   }, [allProducts, searchParams]);

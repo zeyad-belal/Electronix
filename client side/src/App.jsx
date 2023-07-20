@@ -26,7 +26,6 @@ function App() {
   const myCart = useContext(CartContext)
   const {fetchCartItems,sendCartItems} = useCartContext()
   const initialRenderRef = useRef(true);
-  // let initialRender = true;
 
   // FETCHING PRODUCTS 
   useEffect(() => {
@@ -40,7 +39,7 @@ function App() {
     async function sendData(){
       sendCartItems(myCart, cookies.User.id, cookies.UserToken);
     }
-    console.log("intial :" , initialRenderRef.current)
+    // console.log("intial :" , initialRenderRef.current)
     if (initialRenderRef.current) {
       initialRenderRef.current = false;
       return;

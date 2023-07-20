@@ -143,7 +143,7 @@ function CartProvider(props) {
           quantity: item.amount
         }))
       };
-      console.log(reqData)
+      // console.log(reqData)
       await axios.patch(
         `${import.meta.env.VITE_API_URL}/users/${userID}`,
         reqData,
@@ -184,7 +184,7 @@ async function fetchCartItems() {
       return result
     }
     const res = await sendReq()
-    console.log(res)
+    // console.log(res)
 
     cartDispatch({
       type: "REPLACE",
