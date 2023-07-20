@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
 import { useGlobalContext } from "../../../context";
@@ -54,7 +53,7 @@ const ShowProducts = () => {
                   const brand = brands.find((br) => br._id == brand_id._id);
                   return (
                     <tr key={_id}>
-                      <td className="px-6 py-4 whitespace-nowrap">{name.slice(0,90)}...</td>
+                      <td className="px-6 py-4 whitespace-nowrap">{name.slice(0,90)}{name.length > 90 ? '...': ''}</td>
                       <td className="px-6 py-4 whitespace-nowrap">{price}</td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         {category?.category_name}
