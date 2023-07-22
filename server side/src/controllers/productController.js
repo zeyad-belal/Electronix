@@ -158,7 +158,8 @@ const deleteProduct = async (req, res, next) => {
   if (!Types.ObjectId.isValid(req.params.id))
     return next(new AppError("Invalid ObjectId.", 401));
 
-  const product = await Product.findOneAndDelete(req.params.id);
+  const product = await Product.findByIdAndDelete(req.params.id);
+  console.log(product)
   if (!product) return next(new AppError("Product was not found.", 404));
 
   const imagesID = product.images.map((image) => image.fileId);

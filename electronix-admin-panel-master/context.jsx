@@ -83,7 +83,9 @@ export const AppProvider = ({ children }) => {
         toast.success("User deleted successfully!");
         break;
       case "product":
-        axios.delete(`http://localhost:8000/products/${id}`);
+        axios.delete(`http://localhost:8000/products/${id}`, {
+          headers: { Authorization: localStorage.getItem("token") },
+        });
         dispatch({ type: "DELETE_PRODUCT", payload: id });
         toast.success("Product deleted successfully!");
         break;
