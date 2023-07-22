@@ -15,11 +15,11 @@ const Category = (props) => {
         className={`${size} category-item flex grow shrink basis-auto items-center justify-center border border-black mt-0 mr-2 ml-2 mb-4 overflow-hidden hover:cursor-pointer`}
       >
         <div
-          className="background-image w-full h-full bg-center bg-cover"
+          className="background-image w-full h-full bg-center bg-cover "
           style={{
             backgroundImage: `url(${imageUrl})`
           }}
-        />
+        ></div>
         <div className="content">
           <h1 className="title">{title.toUpperCase()}</h1>
           <span className="subtitle">SHOP NOW</span>

@@ -1,3 +1,4 @@
+
 .category-item {
   min-width: 30%;
   height: 240px;
@@ -27,7 +28,8 @@
 
   .content {
     height: 90px;
-    padding: 0 25px;
+    padding: 0 16px;
+    border-radius: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -40,13 +42,13 @@
     .title {
       font-weight: bold;
       margin-bottom: 6px;
-      font-size: 22px;
+      font-size: 18px;
       color: #4a4a4a;
     }
 
     .subtitle {
       font-weight: lighter;
-      font-size: 16px;
+      font-size: 14px;
     }
   }
 }
