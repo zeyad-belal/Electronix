@@ -117,8 +117,7 @@ function CartProvider(props) {
     totalItemsNum: cartState.totalItemsNum,
     addItem: addItemHandler,
     removeItem: removeItemHandler,
-    clearCart: clearCartHandler,
-    sendCartItems: sendCartItems
+    clearCart: clearCartHandler
   };
 
   function addItemHandler(item) {
@@ -196,8 +195,30 @@ async function fetchCartItems() {
 }
 
 
+async function updatedStock(action, amount ,product){
+  if (action == "add"){
+    try{
+      axios.put(`${import.meta.env.VITE_API_URL}/products/${product.id}`,{
+        stock_count : product.stock_count - (amount?? 1)
+      })
+    }catch(error){
+      console.log(error)
+    }
+    
+  }else if(action == "remove"){
+    try{
+      axios.put(`${import.meta.env.VITE_API_URL}/products/${product.id}`,{
+        stock_count : product.stock_count + (amount?? 1)
+      })
+    }catch(error){
+      console.log(error)
+    }
+
+  }
+}
+
   return (
-    <CartContext.Provider value={{...cartContextValue , fetchCartItems,sendCartItems}}>
+    <CartContext.Provider value={{...cartContextValue , fetchCartItems,sendCartItems,updatedStock}}>
       {props.children}
     </CartContext.Provider>
   );
