@@ -14,7 +14,7 @@ const ads = [
 
 const AdsSlider = () => {
   return (
-    <div className="container mx-auto mt-24">
+    <div className="container mx-auto mt-24 max-w-[1100px]">
       <Swiper
         className="ads-slider"
         style={{

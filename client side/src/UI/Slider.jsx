@@ -175,7 +175,7 @@ const Slider = ({ products }) => {
                 className="flex justify-center items-center border border-slate rounded-lg p-2 mt-3 bg-gray-100 hover:bg-orange-500 hover:text-white transition-all duration-300"
               >
                 <CartIcon />
-                <span>Add to Cart</span>
+                <span className="text-xs sm:text-sm">Add to Cart</span>
               </button>
             </div>
           </SwiperSlide>

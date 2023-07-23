@@ -4,10 +4,10 @@ import Circle from "./Circle";
 
 function Circles() {
   return (
-    // uncomment the routing link
+
     <>
-      <div className="flex justify-center items-center mx-12">
-        <div className="flex flex-wrap justify-center gap-12 max-w-5xl">
+      <div className="flex justify-center items-center mx-5 my-5">
+        <div className="flex flex-wrap justify-center gap-5  sm:gap-12 max-w-7xl">
           <Link to="/products?orderBy=bestSeller">
             <Circle
               srcImg={"/circles-images/best-sellers.png"}

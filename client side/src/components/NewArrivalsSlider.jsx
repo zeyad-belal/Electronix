@@ -8,7 +8,7 @@ function NewArrivalsSlider() {
   const filteredProducts = products.filter((product) => product.new_arrival);
   
   return (
-    <div className="mt-5 mx-12">
+    <div className="mt-5 mx-5 sm:mx-12">
       <h1 className="font-bold text-3xl">New Arrivals</h1>
       <Slider products={filteredProducts} />
     </div>

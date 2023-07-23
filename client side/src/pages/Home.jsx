@@ -11,6 +11,7 @@ import { useCookies } from "react-cookie";
 
 // the global state
 import { useGlobalContext } from "../context/ProductsContext";
+import BestSellerSlider from "../components/BestSellerSlider";
 
 export default function Home() {
   const [cookies, setCookies, removeCookie] = useCookies(["User"]);
@@ -60,13 +61,14 @@ export default function Home() {
   }, []);
 
   return (
-    <>
+    <div className="px-12">
       <AdsSlider />
       <OtherServices />
       <Circles />
       <NewArrivalsSlider />
       <Categories />
       <DealsSlider />
-    </>
+      <BestSellerSlider />
+    </div>
   );
 }

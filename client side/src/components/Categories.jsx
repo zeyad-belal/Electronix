@@ -48,7 +48,7 @@ const Categories = () => {
 
   return (
     <>
-      <section className="categories  flex flex-wrap justify-between mx-10">
+      <section className="categories  flex flex-wrap justify-between mx-12 ">
         {categories.map((category) => {
           return <Category category={category} key={category.id} />;
         })}
