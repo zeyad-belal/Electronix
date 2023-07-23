@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 import Confirm from "../confirmation/Confirm";
@@ -50,7 +49,7 @@ const ShowBrands = () => {
                       {brand_name}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      {image?.url}
+                      <img className="max-w-[30px]" src={image?.url} alt="" /> 
                     </td>
                     <td className="text-right px-6 whitespace-nowrap">
                       <Link

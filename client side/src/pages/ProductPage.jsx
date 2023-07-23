@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -11,7 +12,6 @@ import ProductPanels from "../components/Product/ProductPanels";
 import ProductRoute from "../components/Product/ProductRoute";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Products from "./Products";
 import { useCartContext } from "../context/CartProvider";
 
 const ProductPage = () => {

@@ -12,7 +12,7 @@ const Category = (props) => {
     <>
       <Link
         to={`/products?category=${title}`}
-        className={`${size} category-item flex grow shrink basis-auto items-center justify-center border border-black mt-0 mr-2 ml-2 mb-4 overflow-hidden hover:cursor-pointer`}
+        className={`${size} category-item flex grow shrink basis-auto items-center justify-center rounded-lg mt-0 mr-2 ml-2 mb-4 overflow-hidden hover:cursor-pointer`}
       >
         <div
           className="background-image w-full h-full bg-center bg-cover "

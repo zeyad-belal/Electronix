@@ -53,7 +53,7 @@ const ShowProducts = () => {
                   const brand = brands.find((br) => br._id == brand_id._id);
                   return (
                     <tr key={_id}>
-                      <td className="px-6 py-4 whitespace-nowrap">{name.slice(0,90)}{name.length > 90 ? '...': ''}</td>
+                      <td className="px-6 py-4 whitespace-nowrap">{name.slice(0,80)}{name.length > 90 ? '...': ''}</td>
                       <td className="px-6 py-4 whitespace-nowrap">{price}</td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         {category?.category_name}
@@ -61,7 +61,7 @@ const ShowProducts = () => {
                       <td className="px-6 py-4 whitespace-nowrap">
                         {brand?.brand_name}
                       </td>
-                      <td className="text-right px-6 whitespace-nowrap">
+                      <td className="text-right px-1 whitespace-nowrap">
                         <Link
                           to={`/edit-product/${_id}`}
                           className="py-2 px-3 font-medium text-indigo-600 hover:text-indigo-500 duration-150 hover:bg-gray-50 rounded-lg"

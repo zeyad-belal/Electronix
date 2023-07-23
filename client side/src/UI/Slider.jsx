@@ -135,7 +135,7 @@ const Slider = ({ products }) => {
                 to={`products/${product._id}`}
                 className="flex flex-col justify-center items-center gap-2"
               >
-                <figure className="relative">
+                <figure className="relative max-w-[150px]">
                   <img src={product.images[0]?.url} />
 
                   <div className="absolute top-2 left-0">

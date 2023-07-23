@@ -116,10 +116,10 @@ const Checkout = (props) => {
         $
       </div>
 
-      <div className="flex flex-col md:flex-row justify-between">
+      <div className="flex flex-col md:flex-row justify-between p-1 lg:p-12">
         {/* Form */}
 
-        <div className="mx-auto xl:m-10 md:m-10 sm:my-10 min-w-[350px] ">
+        <div className="mx-auto xl:m-12 md:m-12 sm:my-12 min-w-[350px] ">
           <form
             ref={form}
             onSubmit={handleSubmit(onSubmit)}
@@ -236,17 +236,18 @@ const Checkout = (props) => {
               <PayPal form={form.current} />
             </div>
             <div className={cashclass}>
-              <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-slate-200 p-4 rounded-lg shadow-md z-30 animate-slide-down">
-                <div className="flex justify-center m-auto">
+              <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2  -translate-y-1/2  bg-slate-100 p-8 rounded-lg shadow-md z-30 animate-slide-down">
+                <div className="flex justify-center m-auto items-center gap-2">
                   <BsFillCheckCircleFill size={30} color="green" />
-                </div>
-                <h3 className="text-center font-serif text-2xl text-green-500 my-2">
-                  Congratulations
+                <h3 className="text-center font-serif text-2xl text-green-700  my-2">
+                  Order Successfully Placed
                 </h3>
-                <p>
+                </div>
+                <p className="text-center text-gray-600">
                   We have received your order and our team is preparing it as
-                  soon as possible.Kindly check your email !
+                  soon as possible.
                 </p>
+                  <p className="mx-auto max-w-fit p-2 rounded-lg text-f37020 font-semibold mt-6 border-2 border-f37020"> Kindly check your email !</p>
                 <p></p>
                 <button onClick={closeHandler}>
                   <img
@@ -263,22 +264,22 @@ const Checkout = (props) => {
         {/* Items */}
         <div
           className="flex flex-wrap justify-center gap-4 overflow-y-auto"
-          style={{ maxHeight: "calc(100vh - 200px)" }}
+          style={{ maxHeight: "calc(100vh - 100px)" }}
         >
           {CartCTX.items &&
             CartCTX.items.map((product) => (
               <div
                 key={product.id}
-                className="max-w-sm my-2 rounded-lg overflow-hidden shadow-md bg-white"
+                className="max-w-[250px] my-2 rounded-lg overflow-hidden shadow-md bg-white"
               >
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="w-full h-48 object-cover"
+                  className="w-full h-44 object-cover"
                 />
                 <div className="px-4 py-2">
                   <h2 className="text-lg font-semibold text-gray-800">
-                    {product.name}
+                    {product.name.slice(0,50)}...
                   </h2>
                   <div className="text-gray-700 text-sm">
                     {product.amount} pieces

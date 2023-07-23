@@ -37,7 +37,7 @@ const ProductsItem = ({ item }) => {
           amount: 1,
           price: product.new_price ?? product.price
         })
-        updatedStock("add", 1, product)
+        updatedStock("add", 1, response.data)
 
         toast.success("Item added to cart !",{
           position: "top-right",

@@ -118,7 +118,7 @@ const Subnav = () => {
                     handleMouseEnter(e);
                   }}
                   to="/products?category=TVs"
-                  className="block  sm:inline-block text-white hover:text-gray-200 sm:mx-4"
+                  className="block my-1 text-sm sm:inline-block text-white hover:text-gray-200 sm:mx-4"
                 >
                   TVs 
                 </Link>
@@ -129,9 +129,9 @@ const Subnav = () => {
                     handleMouseEnter(e);
                   }}
                   to="/products?category=Laptops"
-                  className="block sm:inline-block text-white hover:text-gray-200 sm:mx-4"
+                  className="block sm:inline-block my-1 text-sm text-white hover:text-gray-200 sm:mx-4"
                 >
-                  Laptops <AiFillCaretDown className="block sm:inline-block text-white hover:text-gray-200 " />
+                  Laptops <AiFillCaretDown className="hidden sm:inline-block text-white hover:text-gray-200 " />
                 </Link>
 
                 <Link
@@ -140,9 +140,9 @@ const Subnav = () => {
                     handleMouseEnter(e);
                   }}
                   to="/products?category=Mobiles"
-                  className="block sm:inline-block text-white hover:text-gray-200 sm:mx-4"
+                  className="block my-1 text-sm sm:inline-block text-white hover:text-gray-200 sm:mx-4"
                 >
-                  Mobiles <AiFillCaretDown className="block sm:inline-block text-white hover:text-gray-200 " />
+                  Mobiles <AiFillCaretDown className="hidden sm:inline-block text-white hover:text-gray-200 " />
                 </Link>
                 <Link
                   id="4"
@@ -150,9 +150,9 @@ const Subnav = () => {
                     handleMouseEnter(e);
                   }}
                   to="/products?category=Gaming"
-                  className="block sm:inline-block text-white hover:text-gray-200 sm:mx-4"
+                  className=" my-1 text-sm block sm:inline-block text-white hover:text-gray-200 sm:mx-4"
                 >
-                  Gaming <AiFillCaretDown className="block sm:inline-block text-white hover:text-gray-200 " />
+                  Gaming <AiFillCaretDown className="hidden sm:inline-block  text-white hover:text-gray-200 " />
                 </Link>
                 <Link
                   id="5"
@@ -160,9 +160,9 @@ const Subnav = () => {
                     handleMouseEnter(e);
                   }}
                   to="/products?category=Accessories"
-                  className="block sm:inline-block text-white hover:text-gray-200 sm:mx-4"
+                  className="my-1 text-sm block sm:inline-block text-white hover:text-gray-200 sm:mx-4"
                 >
-                  Accessories <AiFillCaretDown className="block sm:inline-block text-white hover:text-gray-200 " />
+                  Accessories <AiFillCaretDown className="hidden sm:inline-block text-white hover:text-gray-200 " />
                 </Link>
               </div>
             </div>
@@ -172,7 +172,7 @@ const Subnav = () => {
             >
               <svg
                 className="h-6 w-6 fill-current"
-                viewBox="0 0 20 20"
+                viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <title>Menu</title>

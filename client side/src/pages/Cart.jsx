@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import { useContext, useEffect, useState } from "react";
 import CartItem from "../components/CartItem";
@@ -33,7 +34,7 @@ const Cart = () => {
   async function addItemHandler(item) {
     try{
       const response =  await axios.get(`${import.meta.env.VITE_API_URL}/products/${item.id}`)
-
+console.log(response.data.stock_count)
       if(response.data.stock_count > 0){
           myCart.addItem({
           id: item.id,
@@ -42,7 +43,7 @@ const Cart = () => {
           price: item.price,
           amount: 1
         });
-        updatedStock("add", 1, item)
+        updatedStock("add", 1, response.data)
       }else{
         toast.info("Item out of stock !", {
           position: "top-right",
