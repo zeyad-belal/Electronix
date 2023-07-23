@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import CartContext from "../context/CartContext";
 import {
   BestSellerBadge,
@@ -12,49 +12,73 @@ import { CartIcon } from "./Icons";
 import UserContext from "../context/UserContext";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useCartContext } from "../context/CartProvider";
+import axios from "axios";
 
 
 
 const ProductsItem = ({ item }) => {
   const myCart = useContext(CartContext);
   const userCTX = useContext(UserContext)
+  const {updatedStock} = useCartContext()
 
+  
+  async function addItemToCart(product) {
+    try{
+      const response =  await axios.get(`${import.meta.env.VITE_API_URL}/products/${product.id}`)
 
-  function addItemToCart(product) {
-    if (window.localStorage.getItem("logged")) {
+      if(response.data.stock_count > 0){
+        if (window.localStorage.getItem("logged")) {
+          myCart.addItem({
+            key: product._id,
+          id: product._id,
+          name: product.name,
+          image: product.images[0].url,
+          amount: 1,
+          price: product.new_price ?? product.price
+        })
+        updatedStock("add", 1, product)
 
-      myCart.addItem({
-        key: product._id,
-      id: product._id,
-      name: product.name,
-      image: product.images[0].url,
-      amount: 1,
-      price: product.new_price ?? product.price
-    })
-    toast.success("Item added to cart !",{
-      position: "top-right",
-      autoClose: 1000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light"
-    })
-    } else {
-      toast.info("Sign in first !", {
-        position: "top-right",
-        autoClose: 1500,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light"
-      });
-      userCTX.toggleModal()
+        toast.success("Item added to cart !",{
+          position: "top-right",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light"
+        })
+        } else {
+          toast.info("Sign in first !", {
+            position: "top-right",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light"
+          });
+          userCTX.toggleModal()
+        }
+      }else{
+        toast.info("Item out of stock !", {
+          position: "top-right",
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light"
+        });
+      }
+    }catch(error){
+      console.log(error)
     }
   }
+
   return (
     <>
       <div className="p-3 m-2 border border-slate rounded-lg hover:shadow-lg transition-shadow duration-300">

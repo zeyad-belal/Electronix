@@ -7,6 +7,7 @@ import UserContext from "../context/UserContext";
 import { toast } from "react-toastify";
 import { useCookies } from "react-cookie";
 import axios from "axios";
+import { useCartContext } from "../context/CartProvider";
 
 const Cart = () => {
   const userCTX = useContext(UserContext);
@@ -16,24 +17,48 @@ const Cart = () => {
   const [showPurchasedItems, setShowPurchasedItems] = useState(false);
   const [PurchasedItems, setPurchasedItems] = useState([]);
   const [quantities, setQuantities] = useState([]);
+  const {updatedStock} = useCartContext()
 
   const togglePurchasedItems = () => {
     setShowPurchasedItems(!showPurchasedItems);
   };
 
-  function removeItemHandler(id) {
+  async function removeItemHandler(id) {
+    const response =  await axios.get(`${import.meta.env.VITE_API_URL}/products/${id}`)
+    
     myCart.removeItem(id);
+    updatedStock("remove", 1, response.data)
   }
 
-  function addItemHandler(item) {
-    myCart.addItem({
-      id: item.id,
-      name: item.name,
-      image: item.image ? item.image : item.images[0].url,
-      price: item.price,
+  async function addItemHandler(item) {
+    try{
+      const response =  await axios.get(`${import.meta.env.VITE_API_URL}/products/${item.id}`)
 
-      amount: 1
-    });
+      if(response.data.stock_count > 0){
+          myCart.addItem({
+          id: item.id,
+          name: item.name,
+          image: item.image ? item.image : item.images[0].url,
+          price: item.price,
+          amount: 1
+        });
+        updatedStock("add", 1, item)
+      }else{
+        toast.info("Item out of stock !", {
+          position: "top-right",
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light"
+        });
+      }
+    
+    }catch(error){
+      console.log(error)
+    }
   }
 
   function checkoutHandler() {
@@ -82,7 +107,6 @@ const Cart = () => {
             </div>
             {/* cart items */}
             {myCart.items.length !== 0 ? (
-              myCart.items.length ? (
                 myCart.items.map((item) => (
                   <CartItem
                     item={item}
@@ -91,18 +115,7 @@ const Cart = () => {
                     onRemove={() => removeItemHandler(item.id)}
                   />
                 ))
-              ) : (
-                localStorage.getItem("cartItems") &&
-                JSON.parse(localStorage.getItem("cartItems")).map((item) => (
-                  <CartItem
-                    item={item}
-                    key={item.id}
-                    onAdd={() => addItemHandler(item)}
-                    onRemove={() => removeItemHandler(item.id)}
-                  />
-                ))
-              )
-            ) : (
+              ):(
               <p className="mx-auto max-w-fit py-1 px-2 font-semibold text-xl my-3 rounded-full">
                 Cart is empty!
               </p>

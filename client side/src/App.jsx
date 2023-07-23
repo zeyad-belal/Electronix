@@ -26,7 +26,6 @@ function App() {
   const myCart = useContext(CartContext)
   const {fetchCartItems,sendCartItems} = useCartContext()
   const initialRenderRef = useRef(true);
-
   // FETCHING PRODUCTS 
   useEffect(() => {
       fetchProducts();

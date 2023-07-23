@@ -11,6 +11,8 @@ import ProductPanels from "../components/Product/ProductPanels";
 import ProductRoute from "../components/Product/ProductRoute";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Products from "./Products";
+import { useCartContext } from "../context/CartProvider";
 
 const ProductPage = () => {
   const [product, setProduct] = useState(null);
@@ -18,29 +20,46 @@ const ProductPage = () => {
   const myCart = useContext(CartContext);
   const { id } = useParams();
   const userCTX = useContext(UserContext)
+  const {updatedStock} = useCartContext()
   
   const handleAddItemToCart = (product) => {
-    if (window.localStorage.getItem("logged")) {
-      myCart.addItem({
-        key: product._id,
-        id: product._id,
-        name: product.name,
-        image: product.images[0].url,
-        amount: count,
-        price: product.new_price ?? product.price,
-      })
-      toast.success("Item added to cart !",{
+    if(product.stock_count >= count){
+
+      if (window.localStorage.getItem("logged")) {
+        myCart.addItem({
+          key: product._id,
+          id: product._id,
+          name: product.name,
+          image: product.images[0].url,
+          amount: count,
+          price: product.new_price ?? product.price,
+        })
+        updatedStock("add", count, product)
+        toast.success("Item added to cart !",{
+          position: "top-right",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light"
+        })
+      } else {
+      toast.info("Sign in first !", {
         position: "top-right",
-        autoClose: 1000,
+        autoClose: 1500,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
         theme: "light"
-      })
-    } else {
-    toast.info("Sign in first !", {
+      });
+      userCTX.toggleModal()
+    }
+  }else{
+    toast.info(`Only ${product.stock_count} left in stock!`, {
       position: "top-right",
       autoClose: 1500,
       hideProgressBar: false,
@@ -50,13 +69,13 @@ const ProductPage = () => {
       progress: undefined,
       theme: "light"
     });
-    userCTX.toggleModal()
   }
+
 }
 
   // handleCounterDecrement
   const handleCounterDecrement = () => {
-    if (count > 0) {
+    if (count > 1) {
       setCount((prevState) => prevState - 1);
     }
   };
@@ -72,13 +91,17 @@ const ProductPage = () => {
       const { data } = await axios.get(
         `${import.meta.env.VITE_API_URL}/products/${id}`
       );
-      // console.log(data);
       setProduct(data);
     }
+    
+    try{
+      getProduct();
+    }catch(error){
+      console.log(error)
+    }
+  }, [myCart]);
 
-    getProduct();
-  }, []);
-
+    console.log(product)
   return (
     <>
       <div>
