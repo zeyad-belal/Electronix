@@ -2,14 +2,14 @@
 /* eslint-disable no-unused-vars */
 import { FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import Login from "./Login";
-import Signup from "./Signup";
-import Searchbar from "./Searchbar.jsx";
+import Login from "../Login";
+import Signup from "../Signup";
+import Searchbar from "../Searchbar.jsx";
 import { useContext, useEffect, useState } from "react";
-import UserContext from "../context/UserContext";
+import UserContext from "../../context/UserContext";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
-import CartContext from "../context/CartContext";
+import CartContext from "../../context/CartContext";
 
 const Navbar = (props) => {
   const navigate = useNavigate();

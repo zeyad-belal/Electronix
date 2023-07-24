@@ -34,7 +34,7 @@ const Cart = () => {
   async function addItemHandler(item) {
     try{
       const response =  await axios.get(`${import.meta.env.VITE_API_URL}/products/${item.id}`)
-console.log(response.data.stock_count)
+
       if(response.data.stock_count > 0){
           myCart.addItem({
           id: item.id,
@@ -59,6 +59,16 @@ console.log(response.data.stock_count)
     
     }catch(error){
       console.log(error)
+      toast.info("Something went wrong !", {
+        position: "top-right",
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light"
+      });
     }
   }
 

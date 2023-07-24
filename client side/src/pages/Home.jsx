@@ -1,18 +1,19 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
-import { useEffect, useState } from "react";
-import Categories from "../components/Categories";
+import { useEffect } from "react";
+import Categories from "../components/Categories/Categories";
 import OtherServices from "../components/OtherServices";
-import NewArrivalsSlider from "../components/NewArrivalsSlider";
+import NewArrivalsSlider from "../components/Sliders/NewArrivalsSlider";
 import Circles from "../components/Circles";
-import DealsSlider from "../components/DealsSlider";
+import DealsSlider from "../components/Sliders/DealsSlider";
 import axios from "axios";
-import AdsSlider from "../components/AdsSlider";
+import AdsSlider from "../components/Sliders/AdsSlider";
 import { useCookies } from "react-cookie";
+import BestSellerSlider from "../components/Sliders/BestSellerSlider";
+import { toast } from "react-toastify";
 
 // the global state
-import { useGlobalContext } from "../context/ProductsContext";
-import BestSellerSlider from "../components/BestSellerSlider";
+// import { useGlobalContext } from "../context/ProductsContext";
 
 export default function Home() {
   const [cookies, setCookies, removeCookie] = useCookies(["User"]);
@@ -32,16 +33,9 @@ export default function Home() {
    */
 
   //  THAT IS HOW TO ACCESS ANYTHING FROM THE GLOBAL STATE
-  const { loading, products } = useGlobalContext();
+  // const { loading, products } = useGlobalContext();
 
   useEffect(() => {
-    // async function getProducts(){
-    // const response = await axios.get("${import.meta.env.VITE_API_URL}/products")
-    // console.log(response.data)
-    // setProducts(response.data)
-    // }
-    // getProducts()
-
     async function getUserData() {
       try {
         const response = await axios.get(
@@ -52,7 +46,17 @@ export default function Home() {
         );
         setCookies("User", response.data.user);
       } catch (error) {
-        console.error(error);
+        // console.error(error);
+        toast.info("Something went wrong !", {
+          position: "top-right",
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light"
+        });
       }
     }
 

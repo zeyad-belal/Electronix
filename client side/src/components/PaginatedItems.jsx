@@ -1,9 +1,8 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
-import ProductsItem from "./ProductsItem";
+import ProductsItem from "./Product/ProductsItem";
 
-// Example items, to simulate fetching from another resources.
 
 function PaginatedItems({ filteredProducts }) {
   const [currentItems, setCurrentItems] = useState([]);

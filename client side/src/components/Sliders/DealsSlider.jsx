@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
-import Slider from "../UI/Slider";
+import Slider from "../../UI/Slider";
 
-import { useGlobalContext } from "../context/ProductsContext";
+import { useGlobalContext } from "../../context/ProductsContext";
 
 /*
   Instead of prop drilling you can access the global state here to get all the 

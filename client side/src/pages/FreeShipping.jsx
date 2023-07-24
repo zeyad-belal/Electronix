@@ -2,10 +2,10 @@ import { BsClock } from "react-icons/bs";
 
 function FreeShipping() {
   return (
-    <div className="mx-12">
+    <div className="mx-12 p-1">
       <div
         style={{ backgroundColor: "#fef9f0" }}
-        className=" rounded-lg md:p-5 sm:p-3  mx-auto flex flex-wrap justify-center my-12 "
+        className="max-w-[1000px] rounded-lg md:p-5 sm:p-3  mx-auto flex flex-wrap justify-center my-12 "
       >
         <div className="my-3 content flex flex-col items-start">
           <h1 className="mb-3 font-bold text-[28px]  w-fit"> Shipping </h1>

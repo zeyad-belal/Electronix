@@ -1,18 +1,18 @@
 /* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
-import { useContext, useState } from "react";
-import CartContext from "../context/CartContext";
+import { useContext } from "react";
+import CartContext from "../../context/CartContext";
 import {
   BestSellerBadge,
   NewArrivalBadge,
   RatingBadge,
   SaleBadge
-} from "./Badges";
-import { CartIcon } from "./Icons";
-import UserContext from "../context/UserContext";
+} from "../Badges";
+import { CartIcon } from "../Icons";
+import UserContext from "../../context/UserContext";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useCartContext } from "../context/CartProvider";
+import { useCartContext } from "../../context/CartProvider";
 import axios from "axios";
 
 

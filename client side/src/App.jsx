@@ -2,18 +2,18 @@
 /* eslint-disable no-unused-vars */
 import Cart from "./pages/Cart.jsx";
 import Checkout from "./pages/Checkout.jsx";
-import Footer from "../src/components/Footer";
+import Footer from "../src/components/Layout/Footer.jsx";
 import Home from "./pages/Home.jsx";
 import FreeShipping from "./pages/FreeShipping.jsx";
 import TechServices from "./pages/TechServices.jsx";
 import { useContext, useEffect, useRef, useState } from "react";
-import Navbar from "./components/Navbar.jsx";
+import Navbar from "./components/Layout/Navbar.jsx";
 import { Route, Routes } from "react-router";
 import NotFound from "./pages/NotFound.jsx";
 import Products from "./pages/Products.jsx";
-import ProductPage from "./pages/ProductPage";
+import ProductPage from "./pages/Product.jsx";
 import About from "./pages/About.jsx";
-import Subnav from "./components/Subnav.jsx";
+import Subnav from "./components/Layout/Subnav.jsx";
 import { useGlobalContext } from "./context/ProductsContext.jsx";
 import CartContext from "./context/CartContext.jsx";
 import { useCookies } from 'react-cookie';
@@ -62,7 +62,7 @@ function App() {
   return (
     <>
       <Navbar searchText={searchText} setSearchText={setSearchText} />
-      <div className="sticky block top-0 z-50">
+      <div className="sticky block top-0 z-40">
         <Subnav />
       </div>
       <Routes>

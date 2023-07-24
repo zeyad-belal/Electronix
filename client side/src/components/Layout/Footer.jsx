@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import BackToTopButton from "./BackToTopButton.jsx";
+import BackToTopButton from "../BackToTopButton";
 import emailjs from "emailjs-com";
 import {
   FaFacebook,

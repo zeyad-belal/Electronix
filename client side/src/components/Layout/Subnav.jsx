@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { AiFillCaretDown } from "react-icons/ai"
-
-import Mobile from "./Mobile.jsx";
-import Laptop from "./Laptop.jsx";
-import Accessories from "./Accessories.jsx";
-import Games from "./Games.jsx";
-import Tv from "./Tv.jsx";
+import Mobile from "../Categories/Mobile";
+import Laptop from "../Categories/Laptop.jsx";
+import Accessories from "../Categories/Accessories.jsx";
+import Games from "../Categories/Games.jsx";
+import Tv from "../Categories/Tv.jsx";
 
 const Subnav = () => {
   const [isOpen, setIsOpen] = useState(false);

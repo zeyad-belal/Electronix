@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
-import Slider from "../UI/Slider";
-import { useGlobalContext } from "../context/ProductsContext";
+import Slider from "../../UI/Slider";
+import { useGlobalContext } from "../../context/ProductsContext";
 
 function NewArrivalsSlider() {
   const { products } = useGlobalContext();

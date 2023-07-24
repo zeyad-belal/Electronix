@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { HomeIcon, RightArrowIcon } from "../Icons";
 
 const ProductRoute = ({ product }) => {
-  console.log(product);
+  // console.log(product);
   return (
     <>
       <div className="flex flex-wrap text-sm font-bold text-gray-800 lg:justify-center lg:items-center p-5">

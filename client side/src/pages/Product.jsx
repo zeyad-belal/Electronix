@@ -97,11 +97,21 @@ const ProductPage = () => {
     try{
       getProduct();
     }catch(error){
-      console.log(error)
+      // console.log(error)
+      toast.info("something went wrong !", {
+        position: "top-right",
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light"
+      });
     }
   }, [myCart]);
 
-    console.log(product)
+    // console.log(product)
   return (
     <>
       <div>
