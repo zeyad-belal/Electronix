@@ -32,7 +32,7 @@ const UpdateCategory = () => {
     formData.append("description", description);
 
     const response = await axios.patch(
-      `http://localhost:8000/categories/${id}`,
+      `${import.meta.env.VITE_API_URL}/categories/${id}`,
       formData
     );
 

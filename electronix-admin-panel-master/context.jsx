@@ -29,25 +29,25 @@ export const AppProvider = ({ children }) => {
   const fetchData = async () => {
     dispatch({ type: "LOADING" });
     await axios
-      .get("http://localhost:8000/products")
+      .get(`${import.meta.env.VITE_API_URL}/products`)
       .then((res) => {
         dispatch({ type: "SET_PRODUCTS", payload: res.data });
       })
       .catch((err) => console.log(err.message));
     await axios
-      .get("http://localhost:8000/categories")
+      .get(`${import.meta.env.VITE_API_URL}/categories`)
       .then((res) => {
         dispatch({ type: "SET_CATEGORIES", payload: res.data });
       })
       .catch((err) => console.log(err.message));
     await axios
-      .get("http://localhost:8000/brands")
+      .get(`${import.meta.env.VITE_API_URL}/brands`)
       .then((res) => {
         dispatch({ type: "SET_BRANDS", payload: res.data });
       })
       .catch((err) => console.log(err.message));
     await axios
-      .get("http://localhost:8000/users", {
+      .get(`${import.meta.env.VITE_API_URL}/users`, {
         headers: { Authorization: localStorage.getItem("token") },
       })
       .then((res) => {
@@ -71,26 +71,26 @@ export const AppProvider = ({ children }) => {
   const deletionConfirm = (id, module) => {
     switch (module) {
       case "category":
-        axios.delete(`http://localhost:8000/categories/${id}`);
+        axios.delete(`${import.meta.env.VITE_API_URL}/categories/${id}`);
         dispatch({ type: "DELETE_CATEGORY", payload: id });
         toast.success("Category deleted successfully!");
         break;
       case "user":
-        axios.delete(`http://localhost:8000/users/${id}`, {
+        axios.delete(`${import.meta.env.VITE_API_URL}/users/${id}`, {
           headers: { Authorization: localStorage.getItem("token") },
         });
         dispatch({ type: "DELETE_USER", payload: id });
         toast.success("User deleted successfully!");
         break;
       case "product":
-        axios.delete(`http://localhost:8000/products/${id}`, {
+        axios.delete(`${import.meta.env.VITE_API_URL}/products/${id}`, {
           headers: { Authorization: localStorage.getItem("token") },
         });
         dispatch({ type: "DELETE_PRODUCT", payload: id });
         toast.success("Product deleted successfully!");
         break;
       case "brand":
-        axios.delete(`http://localhost:8000/brands/${id}`);
+        axios.delete(`${import.meta.env.VITE_API_URL}/brands/${id}`);
         dispatch({ type: "DELETE_BRAND", payload: id });
         toast.success("Brand deleted successfully!");
         break;
@@ -158,7 +158,7 @@ export const AppProvider = ({ children }) => {
   // get logged-in user data
   const getLoggedInUser = async () => {
     const response = await axios.post(
-      "http://localhost:8000/users/dashboard/verify-user",
+      `${import.meta.env.VITE_API_URL}/users/dashboard/verify-user`,
       {},
       { headers: { Authorization: localStorage.getItem("token") } }
     );

@@ -26,7 +26,7 @@ const UpdateUser = () => {
   const onSubmit = async (data) => {
     const { first_name, last_name, role, email, phone_number } = data;
     const response = await axios.patch(
-      `http://localhost:8000/users/dashboard/${id}`,
+      `${import.meta.env.VITE_API_URL}/users/dashboard/${id}`,
       {
         first_name,
         last_name,

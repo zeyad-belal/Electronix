@@ -79,7 +79,7 @@ const AddProduct = () => {
     });
 
     const response = await axios.post(
-      "http://localhost:8000/products",
+      `${import.meta.env.VITE_API_URL}/products`,
       formData
     );
 

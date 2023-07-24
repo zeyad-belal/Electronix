@@ -1,4 +1,3 @@
-import React from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -24,7 +23,7 @@ const AddBrand = () => {
       formData.append("image", image[0]);
     }
 
-    const response = await axios.post("http://localhost:8000/brands", formData);
+    const response = await axios.post(`${import.meta.env.VITE_API_URL}/brands`, formData);
 
     // console.log(response.data);
     createBrand(response.data.createdBrand);

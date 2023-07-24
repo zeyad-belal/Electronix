@@ -106,7 +106,7 @@ const UpdateProduct = () => {
     });
 
     const response = await axios.put(
-      `http://localhost:8000/products/${id}`,
+      `${import.meta.env.VITE_API_URL}/products/${id}`,
       formData
     );
 

@@ -24,7 +24,7 @@ const Login = () => {
     const { email, password } = data;
     try {
       const response = await axios.post(
-        "http://localhost:8000/users/dashboard/login",
+        `${import.meta.env.VITE_API_URL}/users/dashboard/login`,
         { email, password }
       );
       login(response.data.user);

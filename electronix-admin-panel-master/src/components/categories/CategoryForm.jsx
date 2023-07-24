@@ -26,7 +26,7 @@ const CategoryForm = () => {
     formData.append("description", description);
 
     const response = await axios.post(
-      "http://localhost:8000/categories",
+      `${import.meta.env.VITE_API_URL}/categories`,
       formData
     );
 

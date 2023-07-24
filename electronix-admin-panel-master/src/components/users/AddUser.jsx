@@ -18,7 +18,7 @@ const AddUser = () => {
   const onSubmit = async (data) => {
     const { first_name, last_name, phone_number, password, email, role } = data;
 
-    const response = await axios.post("http://localhost:8000/users/signup", {
+    const response = await axios.post(`${import.meta.env.VITE_API_URL}/users/signup`, {
       first_name,
       last_name,
       phone_number,

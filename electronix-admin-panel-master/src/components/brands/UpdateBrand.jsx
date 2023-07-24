@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from "axios";
@@ -31,7 +31,7 @@ const UpdateBrand = () => {
     }
 
     const response = await axios.patch(
-      `http://localhost:8000/brands/${id}`,
+      `${import.meta.env.VITE_API_URL}/brands/${id}`,
       formData
     );
 
