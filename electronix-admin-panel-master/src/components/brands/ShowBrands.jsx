@@ -6,7 +6,8 @@ import NoData from "../no-data/NoData";
 import { useGlobalContext } from "../../../context";
 
 const ShowBrands = () => {
-  const { brands, loading, confirmDeletion, deleteItem } = useGlobalContext();
+  const { brands, loading, confirmDeletionStatus, deleteItem } =
+    useGlobalContext();
 
   if (loading) {
     return <Loading />;
@@ -14,7 +15,7 @@ const ShowBrands = () => {
 
   return (
     <>
-      {confirmDeletion && <Confirm />}
+      {confirmDeletionStatus && <Confirm />}
       <div className="max-w-screen-xl mx-auto mt-[30px] px-4 md:px-8">
         <div className="items-start justify-between md:flex">
           <div className="max-w-lg">
@@ -49,7 +50,7 @@ const ShowBrands = () => {
                       {brand_name}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <img className="max-w-[30px]" src={image?.url} alt="" /> 
+                      <img className="max-w-[30px]" src={image?.url} alt="" />
                     </td>
                     <td className="text-right px-6 whitespace-nowrap">
                       <Link

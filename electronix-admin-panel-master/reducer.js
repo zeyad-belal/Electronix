@@ -16,17 +16,17 @@ const reducer = (state, action) => {
     case "DELETE_ITEM":
       return {
         ...state,
-        confirmDeletion: true,
+        confirmDeletionStatus: true,
         module: action.payload.module,
         toBeDeletedItem: action.payload.id,
       };
     case "CANCEL_DELETION":
       return {
         ...state,
-        confirmDeletion: false,
+        confirmDeletionStatus: false,
         module: "",
         toBeDeletedItem: "",
-      }
+      };
     case "DELETE_CATEGORY":
       const newCategories = state.categories.filter(
         (cat) => cat._id != action.payload
@@ -34,7 +34,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         categories: newCategories,
-        confirmDeletion: false,
+        confirmDeletionStatus: false,
         module: "",
         toBeDeletedItem: "",
       };
@@ -45,7 +45,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         products: newProducts,
-        confirmDeletion: false,
+        confirmDeletionStatus: false,
         module: "",
         toBeDeletedItem: "",
       };
@@ -54,7 +54,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         brands: newBrs,
-        confirmDeletion: false,
+        confirmDeletionStatus: false,
         module: "",
         toBeDeletedItem: "",
       };
@@ -63,7 +63,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         users: newUsers,
-        confirmDeletion: false,
+        confirmDeletionStatus: false,
         module: "",
         toBeDeletedItem: "",
       };

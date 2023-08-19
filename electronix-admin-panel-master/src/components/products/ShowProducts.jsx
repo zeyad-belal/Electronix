@@ -6,8 +6,14 @@ import Loading from "../loading/Loading";
 import NoData from "../no-data/NoData";
 
 const ShowProducts = () => {
-  const { products, categories, brands, loading, confirmDeletion, deleteItem } =
-    useGlobalContext();
+  const {
+    products,
+    categories,
+    brands,
+    loading,
+    confirmDeletionStatus,
+    deleteItem,
+  } = useGlobalContext();
 
   if (loading) {
     return <Loading />;
@@ -15,7 +21,7 @@ const ShowProducts = () => {
 
   return (
     <>
-      {confirmDeletion && <Confirm />}
+      {confirmDeletionStatus && <Confirm />}
       <div className="max-w-screen-xl mx-auto mt-[30px] px-4 md:px-8">
         <div className="items-start justify-between md:flex">
           <div className="max-w-lg">
@@ -53,7 +59,10 @@ const ShowProducts = () => {
                   const brand = brands.find((br) => br._id == brand_id._id);
                   return (
                     <tr key={_id}>
-                      <td className="px-6 py-4 whitespace-nowrap">{name.slice(0,80)}{name.length > 90 ? '...': ''}</td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        {name.slice(0, 80)}
+                        {name.length > 90 ? "..." : ""}
+                      </td>
                       <td className="px-6 py-4 whitespace-nowrap">{price}</td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         {category?.category_name}

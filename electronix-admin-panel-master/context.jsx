@@ -9,7 +9,7 @@ const initialState = {
   loggedInUser: {},
   toBeDeletedItem: "",
   module: "",
-  confirmDeletion: false,
+  confirmDeletionStatus: false,
   loading: true,
   loggedIn: false,
   products: [],

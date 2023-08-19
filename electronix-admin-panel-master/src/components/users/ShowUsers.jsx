@@ -7,7 +7,8 @@ import Loading from "../loading/Loading";
 import NoData from "../no-data/NoData";
 
 const ShowUsers = () => {
-  const { users, loading, confirmDeletion, deleteItem } = useGlobalContext();
+  const { users, loading, confirmDeletionStatus, deleteItem } =
+    useGlobalContext();
 
   if (loading) {
     return <Loading />;
@@ -15,7 +16,7 @@ const ShowUsers = () => {
 
   return (
     <>
-      {confirmDeletion && <Confirm />}
+      {confirmDeletionStatus && <Confirm />}
       <div className="max-w-screen-xl mx-auto mt-[30px] px-4 md:px-8">
         <div className="items-start justify-between md:flex">
           <div className="max-w-lg">
