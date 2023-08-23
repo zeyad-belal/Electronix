@@ -77,7 +77,7 @@ const AddProduct = () => {
     [...images].forEach((img) => {
       formData.append("images", img);
     });
-console.log(data)
+
     const response = await axios.post(
       `${import.meta.env.VITE_API_URL}/products`,
       formData
