@@ -62,7 +62,7 @@ const Navbar = (props) => {
         <Link to={"/"}>
           <div className="flex items-baseline mr-5 w-44 sm:w-56">
             <img
-              className="mt-2 sm:mt-1"
+              className=" sm:mt-1"
               src="/assets/logo/main-orange-and-white.png"
               alt="Electronix"
             />
