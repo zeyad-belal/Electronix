@@ -66,7 +66,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="px-12">
+    <div className="px-2 sm:px-6 md:px-12">
       <AdsSlider />
       <OtherServices />
       <Circles />
