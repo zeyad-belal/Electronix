@@ -148,7 +148,7 @@ const Slider = ({ products }) => {
                 </figure>
 
                 <span className="font-semibold tracking-tight text-center text-gray-800">
-                  {product.name.slice(0, 45)}...
+                  {product.name.slice(0, 30)}...
                 </span>
                 <div className="flex items-center border-2 bg-gray-50 border-yellow-500 rounded-full w-fit px-2">
                   <FilledRatingStarIcon />

@@ -6,7 +6,7 @@ function Circles() {
   return (
 
     <>
-      <div className="flex justify-center items-center mx-5 my-5">
+      <div className="flex justify-center items-center mx-3 my-5">
         <div className="flex flex-wrap justify-center gap-5  sm:gap-12 max-w-7xl">
           <Link to="/products?orderBy=bestSeller">
             <Circle

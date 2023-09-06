@@ -24,7 +24,7 @@ export default function OtherServices() {
   };
   // declare their routes in App
   return (
-    <div className="flex max-w-[900px] m-auto px-12 my-12 justify-around flex-wrap">
+    <div className="flex max-w-[900px] m-auto px-3 sm:px-12 my-12 justify-around flex-wrap">
       <Link to="/Techservices">
         <div
           className={`flex items-center font-bold bg-black hover:bg-orange-500 text-white ${
