@@ -56,7 +56,7 @@ const Navbar = (props) => {
     <>
       <nav
         id="MainNav"
-        className="bg-black text-white py-4 my-30 h-20 w-full z-50 sm:px-7 px-4 flex justify-between "
+        className="bg-black text-white py-4 my-30 h-20 w-full z-50 sm:px-7 px-4 flex items-center justify-between "
       >
         {/* Logo */}
         <Link to={"/"}>
