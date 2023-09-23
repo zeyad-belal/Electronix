@@ -27,14 +27,9 @@ import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
 import { useCartContext } from "../context/CartProvider";
 import axios from "axios";
-// import { useGlobalContext } from "../context/ProductsContext";
 
-// import required modules
 
 const Slider = ({ products }) => {
-  // you will need this variable to return a loading indicator  while fetching the products
-  // const { loading } = useGlobalContext();
-
   const myCart = useContext(CartContext);
   const userCTX = useContext(UserContext);
   const [slidesPerView, setSlidesPerView] = useState(5);
