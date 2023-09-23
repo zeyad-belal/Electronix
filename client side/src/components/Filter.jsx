@@ -3,7 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
-// const brands = ["All", "Brand A", "Brand B", "Brand C"]; // Replace with your brand options
+
 
 const Filter = () => {
   // Filter Functionalities ///////////////////////////////////
